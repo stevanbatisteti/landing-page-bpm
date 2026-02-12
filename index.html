@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cálculo de Estruturas Metálicas</title>
+  <title>BATISTETI Projetos Metálicos</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@400;600&display=swap');
 
@@ -17,22 +17,37 @@
     header h1 { font-family:'Oswald', sans-serif; font-size:2.8rem; margin-bottom:1rem; letter-spacing:1px; }
     header p { font-size:1.2rem; color:#ddd; }
 
+    /* Botões padronizados */
+    .cta-btn, button, #continueBtn {
+      background:#e67e22; 
+      color:#fff; 
+      border:none;
+      padding:1rem 2rem; 
+      font-size:1rem; 
+      border-radius:5px;
+      cursor:pointer; 
+      transition: background 0.3s;
+      font-family:'Oswald', sans-serif;
+      letter-spacing:0.5px;
+      text-transform:uppercase;
+      text-decoration:none;
+      display:inline-block;
+    }
+    .cta-btn:hover, button:hover, #continueBtn:hover {
+      background:#d35400;
+    }
+
     section { padding:2rem 1rem; max-width:1000px; margin:auto; }
 
-    /* Blocos unificados */
     .problema, .beneficio, .sobre {
       background:#fff;
       padding:1.5rem;
       border-radius:8px;
-      border-left:6px solid #e67e22; /* borda laranja unificada */
+      border-left:6px solid #e67e22;
       box-shadow:0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.2s;
-      font-family:'Oswald', sans-serif;
-      font-size:1rem;
     }
-    .problema:hover, .beneficio:hover, .sobre:hover { 
-      transform: translateY(-5px); 
-    }
+    .problema:hover, .beneficio:hover, .sobre:hover { transform: translateY(-5px); }
     .problema h3, .sobre h2 {
       font-family:'Oswald', sans-serif;
       margin-bottom:0.5rem;
@@ -44,7 +59,6 @@
       font-size:1rem;
     }
 
-    /* Grades */
     .problemas, .beneficios {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -52,7 +66,34 @@
       margin-top:2rem;
     }
 
-    /* Formulário */
+    .subtitulo {
+      font-family:'Roboto', sans-serif;
+      font-size:1.1rem;
+      color:#555;
+      margin-top:0.5rem;
+      margin-bottom:1.5rem;
+      text-align:center;
+    }
+    .problema ul {
+      list-style:none;
+      padding-left:0;
+      margin:1rem 0;
+    }
+    .problema ul li {
+      margin-bottom:0.5rem;
+      font-family:'Roboto', sans-serif;
+      color:#555;
+    }
+    .impacto {
+      font-weight:bold;
+      color:#e67e22;
+      margin-top:1rem;
+    }
+    .cta-analise {
+      text-align:center;
+      margin-top:2rem;
+    }
+
     form {
       display:flex; flex-direction:column; gap:1rem;
       background:#fff; padding:2rem; border-radius:8px;
@@ -64,21 +105,8 @@
       padding:0.8rem; border:1px solid #ccc; border-radius:5px;
       font-size:1rem; font-family:'Roboto', sans-serif;
     }
-    input:invalid {
-      border: 2px solid #e74c3c;
-      background-color: #fceaea;
-    }
-    input:valid {
-      border: 2px solid #2ecc71;
-      background-color: #ecf9f1;
-    }
-    button {
-      background:#e67e22; color:white; border:none;
-      padding:1rem 2rem; font-size:1rem; border-radius:5px;
-      cursor:pointer; transition: background 0.3s;
-      font-family:'Oswald', sans-serif; letter-spacing:0.5px;
-    }
-    button:hover { background:#d35400; }
+    input:invalid { border: 2px solid #e74c3c; background-color: #fceaea; }
+    input:valid { border: 2px solid #2ecc71; background-color: #ecf9f1; }
 
     footer {
       background:#1a252f; color:#ccc; text-align:center;
@@ -99,7 +127,7 @@
       margin:1rem 0; overflow:hidden;
     }
     .progress-fill {
-      height:100%; width:0%; background:#e67e22; transition:width 1s linear;
+      height:100%; width:0%; background:#e67e22; transition:width 5s linear;
     }
 
     @media (max-width:600px) {
@@ -111,27 +139,49 @@
     }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>Cálculo de Estruturas Metálicas</h1>
-    <p>Soluções sob medida para construtoras, metalúrgicas, engenheiros e arquitetos</p>
+    <h1>REDUZA CUSTOS E ELIMINE RISCOS EM SUA ESTRUTURA</h1>
+    <p>PROJETOS ESTRUTURAIS OTIMIZADOS, SEGUROS E 100% COMPATÍVEIS COM AS NORMAS TÉCNICAS</p>
+    <p>SEM RETRABALHO, SEM SUPERDIMENSIONAMENTO E COM TOTAL RESPONSABILIDADE TÉCNICA</p>
+    <a href="#formulario" class="cta-btn">SOLICITE SEU ORÇAMENTO</a>
   </header>
 
-  <section>
-    <h2>O que resolvemos</h2>
+  <section id="oque-resolvemos">
+    <h2>Seu projeto está começando ou precisa de validação estrutural?</h2>
+    <p class="subtitulo">Em qualquer fase, decisões estruturais impactam custo, segurança e viabilidade da obra.</p>
+
     <div class="problemas">
       <div class="problema">
-        <h3>Projetos Superdimensionados</h3>
-        <p>Chega de gastar aço desnecessário por falta de refinamento técnico.</p>
+        <h3>Inicie seu projeto com segurança técnica e previsibilidade</h3>
+        <p>Um cálculo estrutural bem desenvolvido desde o início evita improvisos, reduz desperdícios e garante que a execução ocorra conforme o planejado.</p>
+        <ul>
+          <li>✔ Definição correta de cargas e esforços</li>
+          <li>✔ Dimensionamento otimizado de perfis</li>
+          <li>✔ Compatibilização com arquitetura e fundações</li>
+          <li>✔ Atendimento às normas técnicas vigentes</li>
+          <li>✔ Base sólida para orçamento e planejamento</li>
+        </ul>
+        <p class="impacto">O momento mais econômico para corrigir erros é antes da execução.</p>
       </div>
+
       <div class="problema">
-        <h3>Inviabilidade Executiva</h3>
-        <p>Projetos que funcionam no papel, mas são complexos ou caros demais para fabricar.</p>
+        <h3>Valide, revise e otimize sua estrutura</h3>
+        <p>Se o projeto já está em desenvolvimento ou execução, ainda é possível garantir segurança e eficiência técnica.</p>
+        <ul>
+          <li>✔ Revisão de premissas estruturais</li>
+          <li>✔ Verificação de superdimensionamento</li>
+          <li>✔ Análise de estabilidade global</li>
+          <li>✔ Ajustes para viabilidade executiva</li>
+          <li>✔ Mitigação de riscos técnicos e jurídicos</li>
+        </ul>
+        <p class="impacto">Revisar antes da obra finalizar é proteger seu investimento.</p>
       </div>
-      <div class="problema">
-        <h3>Insegurança Jurídica</h3>
-        <p>Garantia de total conformidade com as normas brasileiras (NBR 8800 e correlatas).</p>
-      </div>
+    </div>
+
+    <div class="cta-analise">
+      <a href="#formulario" class="cta-btn">SOLICITE UMA ANÁLISE</a>
     </div>
   </section>
 
@@ -154,7 +204,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="formulario">
     <h2>Solicite seu orçamento</h2>
     <form id="whatsappForm">
       <label for="nome">Nome / Empresa:</label>
@@ -177,7 +227,7 @@
       <label for="descricao">Descrição do projeto:</label>
       <textarea id="descricao" name="descricao" rows="5"></textarea>
 
-      <button type="submit">Enviar solicitação</button>
+      <button type="submit">ENVIAR SOLICITAÇÃO</button>
     </form>
   </section>
 
@@ -187,4 +237,61 @@
 
   <!-- Modal -->
   <div class="modal" id="confirmModal">
-    <
+    <div class="modal-content">
+      <h2>Solicitação enviada!</h2>
+      <p>Você será redirecionado para o WhatsApp em alguns segundos.</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <button id="continueBtn">CONTINUAR AGORA</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("whatsappForm");
+    const modal = document.getElementById("confirmModal");
+    const progressFill = document.querySelector(".progress-fill");
+    const continueBtn = document.getElementById("continueBtn");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Captura os dados
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value;
+      const email = document.getElementById("email").value;
+      const estrutura = document.getElementById("estrutura").value;
+      const descricao = document.getElementById("descricao").value;
+
+      // Mensagem formatada com título em negrito
+      const mensagem = `*Nova solicitação de orçamento*\n
+Nome/Empresa: ${nome}\n
+Telefone: ${telefone}\n
+E-mail: ${email}\n
+Estrutura: ${estrutura}\n
+Descrição: ${descricao}`;
+
+      const url = `https://wa.me/5545999502835?text=${encodeURIComponent(mensagem)}`;
+
+      // Exibe o modal
+      modal.style.display = "flex";
+      progressFill.style.width = "0%";
+
+      // Anima a barra em 5 segundos
+      setTimeout(() => { progressFill.style.width = "100%"; }, 100);
+
+      // Após 5 segundos, abre o WhatsApp
+      setTimeout(() => {
+        window.open(url, "_blank");
+        modal.style.display = "none";
+      }, 5000);
+
+      // Botão de continuar abre imediatamente
+      continueBtn.onclick = () => {
+        window.open(url, "_blank");
+        modal.style.display = "none";
+      };
+    });
+  </script>
+</body>
+</html>
