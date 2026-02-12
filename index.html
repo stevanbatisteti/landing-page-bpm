@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +8,75 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Roboto', sans-serif; line-height:1.6; color:#222; background:#f0f0f0; }
 
+    /* Corrige títulos escondidos atrás da barra fixa */
+    html {
+      scroll-padding-top: 6rem; /* altura da barra fixa */
+      scroll-behavior: smooth;  /* rolagem suave */
+    }
+
+    /* Barra fixa no topo */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: #e67e22;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      font-family: 'Oswald', sans-serif;
+      z-index: 1000;
+    }
+    .top-bar .logo { font-size: 1.1rem; line-height: 1.2; }
+    .top-bar .logo .sub { font-size: 0.9rem; }
+
+    .top-bar .menu a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+    .top-bar .menu a:hover { color: #1a252f; }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .top-bar { flex-wrap: wrap; }
+      .menu { 
+        display: none; 
+        flex-direction: column; 
+        width: 100%; 
+        background: #e67e22; 
+        padding: 0.5rem 0;
+      }
+      .menu a { margin: 0.5rem 1rem; }
+      .menu-toggle { display: block; }
+      .menu.active { display: flex; }
+    }
+
     header {
       background: linear-gradient(135deg, #2c3e50, #1a252f);
-      color:#f5f5f5; padding:3rem 1rem; text-align:center;
+      color:#f5f5f5;
+      padding:3.5rem 1rem;
+      text-align:center;
+      margin-top: 5rem; /* espaço abaixo da barra fixa */
     }
-    header h1 { font-family:'Oswald', sans-serif; font-size:2.8rem; margin-bottom:1rem; letter-spacing:1px; }
+    header h1 {
+      font-family:'Oswald', sans-serif;
+      font-size:2.8rem;
+      margin-bottom:1rem;
+      letter-spacing:1px;
+    }
     header p { font-size:1.2rem; color:#ddd; }
+    header .cta-btn { margin-top:2.5rem; }
 
     /* Botões padronizados */
     .cta-btn, button, #continueBtn {
@@ -35,6 +96,14 @@
     }
     .cta-btn:hover, button:hover, #continueBtn:hover {
       background:#d35400;
+    }
+
+    /* Variação azul para CTAs adicionais */
+    .cta-btn.azul {
+      background: #2c3e50;
+    }
+    .cta-btn.azul:hover {
+      background: #1a252f;
     }
 
     section { padding:2rem 1rem; max-width:1000px; margin:auto; }
@@ -141,6 +210,21 @@
 </head>
 
 <body>
+  <!-- Barra fixa no topo -->
+  <div class="top-bar">
+    <div class="logo">
+      <div>BATISTETI</div>
+      <div class="sub">Projetos Metálicos</div>
+    </div>
+    <nav class="menu">
+      <a href="#oque-resolvemos">Motivação</a>
+      <a href="#beneficios">Benefícios</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#formulario">Contato</a>
+    </nav>
+    <div class="menu-toggle">&#9776;</div>
+  </div>
+
   <header>
     <h1>REDUZA CUSTOS E ELIMINE RISCOS EM SUA ESTRUTURA</h1>
     <p>PROJETOS ESTRUTURAIS OTIMIZADOS, SEGUROS E 100% COMPATÍVEIS COM AS NORMAS TÉCNICAS</p>
@@ -181,26 +265,34 @@
     </div>
 
     <div class="cta-analise">
-      <a href="#formulario" class="cta-btn">SOLICITE UMA ANÁLISE</a>
+      <a href="#formulario" class="cta-btn azul">SOLICITE UMA ANÁLISE</a>
     </div>
   </section>
 
-  <section>
-    <h2>Por que contratar nossos serviços?</h2>
+  <section id="beneficios">
+    <h2>Por que escolher a Batisteti Projetos Metálicos?</h2>
     <div class="beneficios">
-      <div class="beneficio">✔ Conformidade com normas técnicas</div>
-      <div class="beneficio">✔ Otimização de materiais e custos</div>
-      <div class="beneficio">✔ Relatórios técnicos claros</div>
-      <div class="beneficio">✔ Acompanhamento direto com engenheiro mecânico</div>
+      <div class="beneficio">✔ Projetos totalmente alinhados às normas técnicas brasileiras, garantindo segurança e credibilidade</div>
+      <div class="beneficio">✔ Estruturas otimizadas que reduzem o consumo de aço e diminuem custos sem comprometer a qualidade</div>
+      <div class="beneficio">✔ Relatórios técnicos claros e objetivos, que facilitam a tomada de decisão e o acompanhamento da obra</div>
+      <div class="beneficio">✔ Atendimento personalizado com engenheiro responsável, acompanhando cada etapa do seu projeto</div>
+      <div class="beneficio">✔ Utilização de ferramentas computacionais avançadas (Cype 3D e CAD) para cálculos precisos e detalhamento completo das estruturas</div>
+      <div class="beneficio">✔ Segurança reforçada com registro no CREA e emissão de ART, assegurando responsabilidade técnica e respaldo legal em cada projeto</div>
+    </div>
+    <div class="cta-analise">
+      <a href="#formulario" class="cta-btn azul">SOLICITE UMA CONSULTA</a>
     </div>
   </section>
 
-  <section>
+  <section id="sobre">
     <h2>Sobre a Batisteti Projetos Metálicos</h2>
     <div class="sobre">
       <p>A Batisteti Projetos Metálicos surgiu para preencher uma lacuna no mercado: a necessidade de projetos de pequeno e médio porte que recebam o mesmo nível de refinamento técnico de grandes obras industriais.</p>
       <p>Nossa atuação é pautada pela expertise técnica acumulada no desenvolvimento de cálculos estruturais de alta complexidade. A Batisteti aplica processos modernos e o uso de tecnologia avançada (Cype 3D e CAD) para garantir que cada projeto seja sinônimo de racionalização de materiais e viabilidade executiva.</p>
       <p>Não trabalhamos com soluções genéricas ou projetos superdimensionados que encarecem a obra desnecessariamente. Nosso foco é a engenharia aplicada à economia inteligente, garantindo que o fabricante tenha facilidade na montagem e o cliente final obtenha o menor consumo de aço possível, sempre sob o rigor das normas técnicas brasileiras.</p>
+    </div>
+    <div class="cta-analise">
+      <a href="#formulario" class="cta-btn azul">PRONTO PARA NOS CHAMAR?</a>
     </div>
   </section>
 
@@ -232,7 +324,7 @@
   </section>
 
   <footer>
-    <p>© 2026 Eng. Stevan | contato@seudominio.com | WhatsApp: (45) 99950-2835</p>
+    <p>© 2026 BATISTETI Projetos Metálicos | contato@seudominio.com | WhatsApp: (45) 99950-2835</p>
   </footer>
 
   <!-- Modal -->
@@ -248,6 +340,14 @@
   </div>
 
   <script>
+    // Menu responsivo (hambúrguer)
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+
+    // Formulário WhatsApp
     const form = document.getElementById("whatsappForm");
     const modal = document.getElementById("confirmModal");
     const progressFill = document.querySelector(".progress-fill");
