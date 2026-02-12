@@ -329,14 +329,7 @@
 
   <!-- Modal -->
   <div class="modal" id="confirmModal">
-    <div class="modal-content">
-      <h2>Solicitação enviada!</h2>
-      <p>Você será redirecionado para o WhatsApp em alguns segundos.</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-      <button id="continueBtn">CONTINUAR AGORA</button>
-    </div>
+    <!-- conteúdo do modal -->
   </div>
 
   <script>
@@ -349,48 +342,27 @@
 
     // Formulário WhatsApp
     const form = document.getElementById("whatsappForm");
-    const modal = document.getElementById("confirmModal");
-    const progressFill = document.querySelector(".progress-fill");
-    const continueBtn = document.getElementById("continueBtn");
 
     form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      // Captura os dados
       const nome = document.getElementById("nome").value;
       const telefone = document.getElementById("telefone").value;
       const email = document.getElementById("email").value;
       const estrutura = document.getElementById("estrutura").value;
       const descricao = document.getElementById("descricao").value;
 
-      // Mensagem formatada com título em negrito
-      const mensagem = `*Nova solicitação de orçamento*\n
-Nome/Empresa: ${nome}\n
-Telefone: ${telefone}\n
-E-mail: ${email}\n
-Estrutura: ${estrutura}\n
-Descrição: ${descricao}`;
+      const mensagem = `*Nova solicitação de orçamento*\n` +
+      `Nome/Empresa: ${nome}\n` +
+      `Telefone: ${telefone}\n` +
+      `E-mail: ${email}\n` +
+      `Estrutura: ${estrutura}\n` +
+      `Descrição: ${descricao}`;
 
       const url = `https://wa.me/5545999502835?text=${encodeURIComponent(mensagem)}`;
 
-      // Exibe o modal
-      modal.style.display = "flex";
-      progressFill.style.width = "0%";
-
-      // Anima a barra em 5 segundos
-      setTimeout(() => { progressFill.style.width = "100%"; }, 100);
-
-      // Após 5 segundos, abre o WhatsApp
-      setTimeout(() => {
-        window.open(url, "_blank");
-        modal.style.display = "none";
-      }, 5000);
-
-      // Botão de continuar abre imediatamente
-      continueBtn.onclick = () => {
-        window.open(url, "_blank");
-        modal.style.display = "none";
-      };
+      // Redireciona na mesma aba (sem bloqueio de pop-up)
+      window.location.href = url;
     });
   </script>
 </body>
