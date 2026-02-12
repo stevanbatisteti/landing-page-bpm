@@ -19,19 +19,40 @@
 
     section { padding:2rem 1rem; max-width:1000px; margin:auto; }
 
-    .beneficios {
-      display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap:1.5rem; margin-top:2rem;
-    }
-    .beneficio {
-      background:#fff; padding:1.5rem; border-radius:8px;
-      border-left:6px solid #e67e22;
+    /* Blocos unificados */
+    .problema, .beneficio, .sobre {
+      background:#fff;
+      padding:1.5rem;
+      border-radius:8px;
+      border-left:6px solid #e67e22; /* borda laranja unificada */
       box-shadow:0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.2s;
       font-family:'Oswald', sans-serif;
+      font-size:1rem;
     }
-    .beneficio:hover { transform: translateY(-5px); }
+    .problema:hover, .beneficio:hover, .sobre:hover { 
+      transform: translateY(-5px); 
+    }
+    .problema h3, .sobre h2 {
+      font-family:'Oswald', sans-serif;
+      margin-bottom:0.5rem;
+      font-size:1.2rem;
+    }
+    .problema p, .sobre p, .beneficio {
+      font-family:'Roboto', sans-serif;
+      color:#555;
+      font-size:1rem;
+    }
 
+    /* Grades */
+    .problemas, .beneficios {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+    }
+
+    /* Formulário */
     form {
       display:flex; flex-direction:column; gap:1rem;
       background:#fff; padding:2rem; border-radius:8px;
@@ -86,6 +107,7 @@
       header p { font-size:1rem; }
       form { padding:1rem; }
       button { width:100%; }
+      .modal-content { width:95%; }
     }
   </style>
 </head>
@@ -96,12 +118,39 @@
   </header>
 
   <section>
+    <h2>O que resolvemos</h2>
+    <div class="problemas">
+      <div class="problema">
+        <h3>Projetos Superdimensionados</h3>
+        <p>Chega de gastar aço desnecessário por falta de refinamento técnico.</p>
+      </div>
+      <div class="problema">
+        <h3>Inviabilidade Executiva</h3>
+        <p>Projetos que funcionam no papel, mas são complexos ou caros demais para fabricar.</p>
+      </div>
+      <div class="problema">
+        <h3>Insegurança Jurídica</h3>
+        <p>Garantia de total conformidade com as normas brasileiras (NBR 8800 e correlatas).</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Por que contratar nossos serviços?</h2>
     <div class="beneficios">
       <div class="beneficio">✔ Conformidade com normas técnicas</div>
       <div class="beneficio">✔ Otimização de materiais e custos</div>
       <div class="beneficio">✔ Relatórios técnicos claros</div>
       <div class="beneficio">✔ Acompanhamento direto com engenheiro mecânico</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sobre a Batisteti Projetos Metálicos</h2>
+    <div class="sobre">
+      <p>A Batisteti Projetos Metálicos surgiu para preencher uma lacuna no mercado: a necessidade de projetos de pequeno e médio porte que recebam o mesmo nível de refinamento técnico de grandes obras industriais.</p>
+      <p>Nossa atuação é pautada pela expertise técnica acumulada no desenvolvimento de cálculos estruturais de alta complexidade. A Batisteti aplica processos modernos e o uso de tecnologia avançada (Cype 3D e CAD) para garantir que cada projeto seja sinônimo de racionalização de materiais e viabilidade executiva.</p>
+      <p>Não trabalhamos com soluções genéricas ou projetos superdimensionados que encarecem a obra desnecessariamente. Nosso foco é a engenharia aplicada à economia inteligente, garantindo que o fabricante tenha facilidade na montagem e o cliente final obtenha o menor consumo de aço possível, sempre sob o rigor das normas técnicas brasileiras.</p>
     </div>
   </section>
 
@@ -138,64 +187,4 @@
 
   <!-- Modal -->
   <div class="modal" id="confirmModal">
-    <div class="modal-content">
-      <h3>Confirmação</h3>
-      <p>Você será direcionado ao WhatsApp para concluir o envio.</p>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <button id="continueBtn">Continuar</button>
-    </div>
-  </div>
-
-  <script>
-    const form = document.getElementById("whatsappForm");
-    const modal = document.getElementById("confirmModal");
-    const progressFill = document.getElementById("progressFill");
-    const continueBtn = document.getElementById("continueBtn");
-
-    let whatsappUrl = "";
-
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      const nome = document.getElementById("nome").value;
-      const telefone = document.getElementById("telefone").value;
-      const email = document.getElementById("email").value;
-      const estrutura = document.getElementById("estrutura").value;
-      const descricao = document.getElementById("descricao").value;
-
-      if(!nome || !telefone){
-        alert("Por favor, preencha os campos obrigatórios: Nome e Telefone.");
-        return;
-      }
-
-      const mensagem = `*Nova solicitação de orçamento*%0A
-      Nome/Empresa: ${nome}%0A
-      Telefone: ${telefone}%0A
-      E-mail: ${email}%0A
-      Estrutura: ${estrutura}%0A
-      Descrição: ${descricao}`;
-
-      whatsappUrl = `https://wa.me/5545999502835?text=${mensagem}`;
-
-      // Mostrar modal
-      modal.style.display = "flex";
-      progressFill.style.width = "0%";
-
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 20;
-        progressFill.style.width = progress + "%";
-        if(progress >= 100){
-          clearInterval(interval);
-          window.open(whatsappUrl, '_blank');
-          modal.style.display = "none";
-        }
-      }, 1000);
-    });
-
-    continueBtn.addEventListener("click", () => {
-      window.open(whatsappUrl, '_blank');
-      modal.style.display = "none";
-    });
-  </script>
-</body>
-</html>
+    <
