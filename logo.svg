@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2000"
+   height="700"
+   viewBox="0 0 2000 700"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.3"
+     inkscape:cx="960"
+     inkscape:cy="541.66667"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="633.33331"
+       y="50"
+       width="1196.6667"
+       height="593.33331"
+       id="rect2" />
+  </defs>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g5"
+       transform="translate(0,-10.173246)">
+      <g
+         id="g4"
+         transform="translate(12.876211)">
+        <g
+           id="g3"
+           transform="translate(-20,-116.78218)">
+          <rect
+             style="fill:#808080;stroke:#ffffff;stroke-width:20;stroke-dasharray:none"
+             id="rect1"
+             width="449.42191"
+             height="449.15274"
+             x="64.888306"
+             y="183.15982" />
+          <path
+             sodipodi:type="star"
+             style="fill:#0f3c58;stroke:#ffffff;stroke-width:22.2262;stroke-dasharray:none"
+             id="path1"
+             inkscape:flatsided="true"
+             sodipodi:sides="3"
+             sodipodi:cx="279.12524"
+             sodipodi:cy="908.23059"
+             sodipodi:r1="304.89822"
+             sodipodi:r2="152.44911"
+             sodipodi:arg1="-1.5707963"
+             sodipodi:arg2="-0.52359878"
+             inkscape:rounded="0"
+             inkscape:randomized="0"
+             d="m 279.12525,603.33237 264.0496,457.34733 -528.099217,0 z"
+             inkscape:transform-center-y="-72.091749"
+             transform="matrix(0.83809788,0,0,0.96613141,55.664986,-390.72263)"
+             inkscape:transform-center-x="2.9538494e-06" />
+        </g>
+        <g
+           transform="matrix(1.611826,0,0,1.611826,-225.98203,-252.15053)"
+           id="g1">
+          <text
+             fill="#0f3c58"
+             font-family="Montserrat, Montserrat_MSFontService, sans-serif"
+             font-weight="700"
+             font-size="383px"
+             transform="translate(441.6,471)"
+             id="text1">BPM</text>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.5306092,0,0,1.5306092,32.830766,-167.76759)"
+         id="g1-7">
+        <text
+           fill="#0f3c58"
+           font-family="Roboto, Roboto_MSFontService, sans-serif"
+           font-weight="700"
+           font-size="80px"
+           id="text1-1"
+           x="9.6000004"
+           y="544.1875">BATISTETI PROJETOS METÁLICOS</text>
+      </g>
+    </g>
+  </g>
+</svg>

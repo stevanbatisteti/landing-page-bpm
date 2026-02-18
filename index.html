@@ -18,7 +18,7 @@
     .top-bar {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      background: #e67e22;
+      background: #c0c0c0;
       color: #fff;
       display: flex;
       justify-content: space-between;
@@ -27,11 +27,23 @@
       font-family: 'Oswald', sans-serif;
       z-index: 1000;
     }
-    .top-bar .logo { font-size: 1.1rem; line-height: 1.2; }
-    .top-bar .logo .sub { font-size: 0.9rem; }
+    .top-bar .logo { 
+      font-size: 1.1rem; 
+      line-height: 1.2; 
+      color: #2c3e50;
+    }
+    
+    .top-bar .logo .sub { 
+      font-size: 0.9rem;
+      color: #5a6f82; 
+    }
+
+    .top-bar .menu {
+      display: flex;
+    }
 
     .top-bar .menu a {
-      color: #fff;
+      color: #2c3e50;
       text-decoration: none;
       margin-left: 1rem;
       font-size: 0.95rem;
@@ -39,35 +51,78 @@
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
     }
-    .top-bar .menu a:hover { color: #1a252f; }
+    
+    .top-bar .menu a:hover { 
+      color: #1a252f;
+      background: rgba(44, 62, 80, 0.08);
+    }
 
     .menu-toggle {
       display: none;
-      font-size: 1.5rem;
+      width: 28px;
+      height: 22px;
+      position: relative;
       cursor: pointer;
+      z-index: 1100;
     }
+
+    .menu-toggle span {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: #2c3e50;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span {
+      background: #1a252f;
+    }
+
+    .menu-toggle span:nth-child(1) { top: 0; }
+    .menu-toggle span:nth-child(2) { top: 9px; }
+    .menu-toggle span:nth-child(3) { top: 18px; }
 
     /* Responsivo */
     @media (max-width: 768px) {
-      .top-bar { flex-wrap: wrap; }
-      .menu { 
-        display: none; 
-        flex-direction: column; 
-        width: 100%; 
-        background: #e67e22; 
-        padding: 0.5rem 0;
-      }
-      .menu a { margin: 0.5rem 1rem; }
       .menu-toggle { display: block; }
-      .menu.active { display: flex; }
+      .menu-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 999;
+      }
+      .menu-overlay.active { opacity: 1; pointer-events: auto; }
+      .top-bar .menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; right: -260px;
+        width: 240px; height: 100vh;
+        background: #c0c0c0;
+        padding-top: 5rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+      }
+      .menu a { margin: 1rem; font-size: 1.1rem; }
+      .menu.active { right: 0; }
     }
+    
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
 
     header {
       background: linear-gradient(135deg, #2c3e50, #1a252f);
       color:#f5f5f5;
       padding:3.5rem 1rem;
       text-align:center;
-      margin-top: 5rem; /* espaço abaixo da barra fixa */
+      margin-top: 5rem;
     }
     header h1 {
       font-family:'Oswald', sans-serif;
@@ -76,35 +131,27 @@
       letter-spacing:1px;
     }
     header p { font-size:1.2rem; color:#ddd; }
-    header .cta-btn { margin-top:2.5rem; }
 
-    /* Botões padronizados */
-    .cta-btn, button, #continueBtn {
-      background:#e67e22; 
-      color:#fff; 
+    .cta-btn {
+      background:#c0c0c0; 
+      color:#2c3e50; 
       border:none;
       padding:1rem 2rem; 
       font-size:1rem; 
       border-radius:5px;
       cursor:pointer; 
-      transition: background 0.3s;
+      transition: all 0.3s;
       font-family:'Oswald', sans-serif;
       letter-spacing:0.5px;
       text-transform:uppercase;
       text-decoration:none;
       display:inline-block;
-    }
-    .cta-btn:hover, button:hover, #continueBtn:hover {
-      background:#d35400;
+      margin-top: 1rem;
     }
 
-    /* Variação azul para CTAs adicionais */
-    .cta-btn.azul {
-      background: #2c3e50;
-    }
-    .cta-btn.azul:hover {
-      background: #1a252f;
-    }
+    .cta-btn:hover { background:#1a252f; color:#fff; }
+    .cta-btn.azul { background: #2c3e50; color: #fff; }
+    .cta-btn.azul:hover { background: #1a252f; }
 
     section { padding:2rem 1rem; max-width:1000px; margin:auto; }
 
@@ -112,7 +159,7 @@
       background:#fff;
       padding:1.5rem;
       border-radius:8px;
-      border-left:6px solid #e67e22;
+      border-left:6px solid #c0c0c0;
       box-shadow:0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.2s;
     }
@@ -122,15 +169,10 @@
       margin-bottom:0.5rem;
       font-size:1.2rem;
     }
-    .problema p, .sobre p, .beneficio {
-      font-family:'Roboto', sans-serif;
-      color:#555;
-      font-size:1rem;
-    }
 
     .problemas, .beneficios {
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap:1.5rem;
       margin-top:2rem;
     }
@@ -143,25 +185,11 @@
       margin-bottom:1.5rem;
       text-align:center;
     }
-    .problema ul {
-      list-style:none;
-      padding-left:0;
-      margin:1rem 0;
-    }
-    .problema ul li {
-      margin-bottom:0.5rem;
-      font-family:'Roboto', sans-serif;
-      color:#555;
-    }
-    .impacto {
-      font-weight:bold;
-      color:#e67e22;
-      margin-top:1rem;
-    }
-    .cta-analise {
-      text-align:center;
-      margin-top:2rem;
-    }
+
+    .problema ul { list-style:none; padding-left:0; margin:1rem 0; }
+    .problema ul li { margin-bottom:0.5rem; color:#555; }
+    .impacto { font-weight:bold; color:#2c3e50; margin-top:1rem; }
+    .cta-analise { text-align:center; margin-top:2rem; }
 
     form {
       display:flex; flex-direction:column; gap:1rem;
@@ -170,86 +198,78 @@
       margin-top:2rem;
     }
     label { font-weight:bold; font-family:'Oswald', sans-serif; }
-    input, textarea, select {
+    input, textarea {
       padding:0.8rem; border:1px solid #ccc; border-radius:5px;
       font-size:1rem; font-family:'Roboto', sans-serif;
     }
-    input:invalid { border: 2px solid #e74c3c; background-color: #fceaea; }
-    input:valid { border: 2px solid #2ecc71; background-color: #ecf9f1; }
 
     footer {
       background:#1a252f; color:#ccc; text-align:center;
-      padding:1rem; margin-top:2rem; font-size:0.9rem;
-    }
-
-    /* Modal */
-    .modal {
-      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-      background:rgba(0,0,0,0.6); justify-content:center; align-items:center;
-    }
-    .modal-content {
-      background:#fff; padding:2rem; border-radius:8px; text-align:center;
-      max-width:400px; width:90%; box-shadow:0 2px 10px rgba(0,0,0,0.3);
-    }
-    .progress-bar {
-      width:100%; height:10px; background:#ccc; border-radius:5px;
-      margin:1rem 0; overflow:hidden;
-    }
-    .progress-fill {
-      height:100%; width:0%; background:#e67e22; transition:width 5s linear;
+      padding:2rem 1rem; margin-top:2rem; font-size:0.9rem;
     }
 
     @media (max-width:600px) {
       header h1 { font-size:2rem; }
       header p { font-size:1rem; }
-      form { padding:1rem; }
-      button { width:100%; }
-      .modal-content { width:95%; }
+      .cta-btn { width: 100%; text-align: center; }
     }
 
-    .beneficio ul {
-      padding-left: 20px;
-      margin-top: 8px;
-      list-style-position: inside;
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      line-height: 1.3;
     }
 
-  </style>
+</style>
 </head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <body>
-  <!-- Barra fixa no topo -->
   <div class="top-bar">
     <div class="logo">
-      <div>BATISTETI</div>
-      <div class="sub">Projetos Metálicos</div>
-    </div>
-    <nav class="menu">
-      <a href="#oque-resolvemos">Motivação</a>
-      <a href="#beneficios">Benefícios</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#formulario">Contato</a>
-    </nav>
-    <div class="menu-toggle">&#9776;</div>
+          <a href="#hero">
+            <img src="logo.svg" alt="BATISTETI Projetos Metálicos" style="height: 40px; width: auto; display: block;">
+          </a>
+        </div>
+      
+      <nav class="menu">
+        <a href="#inicio-projeto">O Problema</a>
+        <a href="#beneficios">Vantagens</a>
+        <a href="#processo">O Processo</a>
+        <a href="#sobre">A Batisteti</a>
+        <a href="#formulario" style="background: #2c3e50; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; margin-left: 1.5rem;">Avaliação Técnica</a>
+      </nav>
+
+      <div class="menu-toggle">
+        <span></span><span></span><span></span>
+      </div>
   </div>
 
-  <header>
-    <h1>PROJETO ESTRUTURAL PARA GALPÕES, COBERTURAS E MEZANINOS METÁLICOS A PARTIR DO SEU CONCEITO ARQUITETÔNICO</h1>
-    <h2>Transforme seu projeto em uma solução segura, executável e economicamente viável</h2>
-    <a href="#formulario" class="cta-btn">SOLICITE SEU ORÇAMENTO</a>
+  <div class="menu-overlay"></div>
+
+  <div class="menu-overlay"></div>
+
+  <header id="hero">
+    <h1>EVITE INCERTEZAS E CUSTOS IMPREVISTOS NO SEU PROJETO DE ESTRUTURA METÁLICA</h1>
+    <h2>Transforme seu conceito em uma solução estrutural viável, segura e tecnicamente definida antes do início da obra.</h2>
+    <a href="#formulario" class="cta-btn">AVALIE A VIABILIDADE DO SEU PROJETO</a>
+    <p style="margin-top:10px; font-size:0.9rem; color:#ccc;">Antecipe riscos técnicos e tenha previsibilidade antes de investir na execução.</p>
   </header>
 
-  <section id="oque-resolvemos">
-    <h2>Ter um projeto arquitetônico não garante que a estrutura seja viável</h2>
-    <p class="subtitulo">A definição estrutural influencia diretamente custo, prazo e viabilidade da execução.</p>
+  <section id="inicio-projeto">
+    <h2>Seu projeto pode estar começando sem base estrutural definida</h2>
+    <p class="subtitulo">Sem definição estrutural, custo e viabilidade tornam-se estimativas — não decisões técnicas.</p>
     
     <div class="problemas">
       <div class="problema">
         <h3>IMPACTO NO PROJETO</h3>
-        <p>Sem a definição estrutural:</p>
+        <p>Quando a estrutura não é definida:</p>
         <ul>
           <li>✔ O consumo de aço é apenas estimado;</li>
           <li>✔ O orçamento carece de base técnica;</li>
-          <li>✔ A fabricação pode depender de ajustes futuros;</li>
+          <li>✔ A fabricação pode sofrer atrasos por falta de definições prévias;</li>
           <li>✔ A execução pode exigir adaptações em obra.</li>
         </ul>
         <p class="impacto">A incerteza estrutural aumenta o risco de custo adicional e retrabalho.</p>
@@ -276,25 +296,26 @@
   <section id="beneficios">
     <h2>Mais previsibilidade e controle para o seu investimento</h2>
     <div class="beneficios">
-      <div class="beneficio">✔ Dimensionamento adequado que evita consumo excessivo de aço</div>
-      <div class="beneficio">✔ Maior previsibilidade de custos antes do início da obra</div>
-      <div class="beneficio">✔ Redução do risco de ajustes estruturais durante a execução</div>
-      <div class="beneficio">✔ Projetos pensados para facilitar fabricação e montagem</div>
-      <div class="beneficio">✔ Apoio técnico para decisões com base em viabilidade real</div>
-      <div class="beneficio">✔ Responsabilidade técnica formal com CREA e emissão de ART</div>
+      <div class="beneficio">Dimensionamento adequado que evita consumo excessivo de aço.</div>
+      <div class="beneficio">Maior previsibilidade de custos antes do início da obra.</div>
+      <div class="beneficio">Redução do risco de ajustes estruturais durante a execução.</div>
+      <div class="beneficio">Projetos pensados para facilitar a fabricação e montagem.</div>
+      <div class="beneficio">Apoio técnico para decisões com base em viabilidade real.</div>
+      <div class="beneficio">Emissão de ART para Projeto Estrutural Executivo, garantindo conformidade normativa.</div>
     </div>
+    <p style="margin-top:20px; text-align: center;">A atuação considera não apenas o dimensionamento estrutural, mas também a viabilidade técnica da solução dentro do contexto real de execução.</p>
+
     <div class="cta-analise">
       <a href="#formulario" class="cta-btn azul">SOLICITE A AVALIAÇÃO DO SEU PROJETO</a>
     </div>
   </section>
 
   <section id="sobre">
-    <h2>Rigor técnico aliado à experiência prática</h2>
+    <h2>Origem e atuação</h2>
     <div class="sobre">
-      <p>A BATISTETI Projetos Metálicos nasce com o objetivo de aplicar, de forma autoral, a experiência acumulada ao longo de mais de 20 anos de atuação técnica em engenharia.</p>
-      <p>Ao longo desse período, houve envolvimento direto no desenvolvimento e análise de estruturas metálicas, acompanhando na prática como decisões estruturais influenciam custo, execução e viabilidade das obras.</p>
-      <p>Cada projeto é tratado considerando o impacto que a definição estrutural terá no custo, na execução e na segurança da obra.</p>
-      <p>Toda solução é conduzida com responsabilidade técnica formal, incluindo registro no CREA e emissão de ART.</p>
+      <p>A BATISTETI Projetos Metálicos nasce da continuidade de uma experiência construída na prática do desenvolvimento de projetos de estruturas metálicas.</p>
+      <p style="margin-top:10px;">Sua atuação é guiada por critérios técnicos consolidados, com foco em segurança, viabilidade e eficiência na execução.</p>
+      <p style="margin-top:10px;">Toda solução é conduzida com responsabilidade técnica formal, incluindo registro no CREA e emissão de ART.</p>
     </div>
     <div class="cta-analise">
       <a href="#formulario" class="cta-btn azul">ENVIE SEU PROJETO PARA AVALIAÇÃO</a>
@@ -303,11 +324,11 @@
 
   <section id="processo">
     <h2>Como funciona a definição estrutural do seu projeto</h2>
+    <p style="text-align: center; margin-bottom: 2rem;">A análise estrutural não se limita à definição de elementos. Desde as etapas iniciais, são considerados aspectos de fabricação, montagem e racionalização, buscando soluções que não sejam apenas calculáveis, mas viáveis de executar.</p>
 
     <div class="beneficios">
-
       <div class="beneficio">
-        <h3>1. Envio das informações do projeto</h3>
+        <h3>1. Envio das informações</h3>
         <p>Você encaminha o material disponível — que pode ser um projeto arquitetônico, croqui ou mesmo um conceito inicial.</p>
         <p class="impacto">Não é necessário que o projeto esteja totalmente definido para iniciar a análise.</p>
       </div>
@@ -321,25 +342,64 @@
       <div class="beneficio">
         <h3>3. Definição estrutural</h3>
         <p>Com base na análise, são estabelecidos os parâmetros que darão base técnica ao projeto:</p>
-        <ul>
-          <li>Carregamentos</li>
-          <li>Sistema estrutural</li>
-          <li>Dimensionamento inicial</li>
+        <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Carregamentos;</li>
+          <li>Sistema estrutural;</li>
+          <li>Dimensionamento inicial.</li>
         </ul>
-        <p class="impacto">Essa etapa transforma estimativas em critérios.</p>
+        <p class="impacto">Esta etapa consolida o dimensionamento estrutural, transformando conceitos em dados técnicos verificados.</p>
       </div>
 
       <div class="beneficio">
-        <h3>4. Base técnica para execução</h3>
-        <p>O resultado é uma definição estrutural que permite:</p>
-        <ul>
-          <li>Maior previsibilidade de material</li>
-          <li>Apoio ao orçamento</li>
-          <li>Segurança nas decisões de fabricação e montagem</li>
+        <h3>4. Diretrizes para fabricação</h3>
+        <p>O resultado é uma definição estrutural que orienta as etapas posteriores, permitindo:</p>
+        <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Maior previsibilidade de consumo de materiais;</li>
+          <li>Base técnica sólida para elaboração de orçamentos;</li>
+          <li>Diretrizes que norteiam o futuro detalhamento de fabricação.</li>
         </ul>
-        <p class="impacto">O projeto avança com clareza técnica antes do início da obra.</p>
+        <p class="impacto">O projeto fornece a definição técnica rigorosa para que seja elaborado o detalhamento da estrutura conforme o dimensionamento planejado.</p>
       </div>
 
+      <div class="beneficio">
+        <h3>5. Entregáveis (Projeto Executivo)</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><strong>• Memória de Cálculo:</strong> Normas NBR 8800, NBR 6123 e complementares.</li>
+          <li><strong>• Locação e Cargas:</strong> Pontos de apoio e esforços para fundações.</li>
+          <li><strong>• Projeto Geométrico:</strong> Definição de perfis, seções e arranjo completo.</li>
+          <li><strong>• Lista de Materiais:</strong> Quantitativo de peso e perfis para cotação.</li>
+          <li><strong>• ART de Projeto:</strong> Registro de responsabilidade técnica no CREA.</li>
+        </ul>
+        <p style="font-size: 0.85rem; color: #777; margin-top: 10px; border-top: 1px solid #eee; padding-top: 8px;">
+          <strong>Nota:</strong> Este pacote compreende o projeto executivo. Não inclui detalhamento de fabricação peça a peça.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 2.5rem; padding: 1.5rem; background: #e9ecef; border-radius: 8px; border-left: 6px solid #2c3e50;">
+        <h4 style="font-family: 'Oswald', sans-serif; color: #2c3e50; margin-bottom: 0.8rem; font-size: 1.1rem;">
+            SOBRE O ESCOPO E DETALHAMENTO
+        </h4>
+        <p style="font-size: 0.95rem; color: #444; margin-bottom: 1.2rem;">
+            O <strong>Projeto Estrutural Executivo</strong> fornecido pela BATISTETI entrega todas as informações necessárias para a aprovação, orçamento preciso e guia de montagem da estrutura. 
+        </p>
+        
+        <div style="display: flex; gap: 1.2rem; align-items: stretch; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 280px; max-width: 100%;">
+                <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">
+                    <strong>Diferencial:</strong> Enquanto o executivo define "o que" e "onde" a estrutura deve ser, o detalhamento de fabricação define o "como" ela será fabricada (peça a peça).
+                </p>
+            </div>
+
+            <div style="flex: 1; min-width: 280px; max-width: 100%; background: rgba(44, 62, 80, 0.05); padding: 1.2rem; border-radius: 6px; border: 1px dashed #2c3e50;">
+                <p style="font-size: 0.9rem; font-weight: bold; color: #2c3e50; margin-bottom: 8px;">
+                    💡 Detalhamento de Fabricação
+                </p>
+                <p style="font-size: 0.85rem; color: #555; line-height: 1.4;">
+                    Caso sua obra exija o detalhamento peça a peça da estrutura, este serviço pode ser incluído mediante <strong>negociação adicional</strong>.
+                </p>
+            </div>
+        </div>
     </div>
 
     <div class="cta-analise">
@@ -348,80 +408,56 @@
   </section>
 
   <section id="formulario">
-    <h2>Inicie a análise do seu projeto</h2>
+    <h2>Avalie a viabilidade estrutural antes de avançar com o investimento</h2>
+    <p class="subtitulo">Envie as informações iniciais e receba uma avaliação técnica preliminar, sem compromisso de contratação.</p>
+    
     <form id="emailForm">
-
       <label for="nome">Nome / Empresa:</label>
       <input type="text" id="nome" name="nome" required>
 
       <label for="telefone">Telefone (WhatsApp):</label>
       <input type="tel" id="telefone" name="telefone" required>
 
-      <label for="email">E-mail:</label>
+      <label for="email">E-mail (Opcional):</label>
       <input type="email" id="email" name="email">
 
-      <label for="descricao">Conte brevemente sobre sua necessidade ou obra:</label>
-      <textarea id="descricao" name="descricao" rows="5"></textarea>
-
-      <button type="submit">ENVIAR PARA AVALIAÇÃO</button>
-
-      <p style="font-size:0.85rem; color:#666; margin-top:1rem;">
+      <label for="descricao">Descrição da necessidade estrutural:</label>
+      <textarea id="descricao" name="descricao" rows="5" placeholder="Descreva brevemente o estágio atual do projeto..."></textarea>
+      
+      <button type="submit" class="cta-btn">SOLICITAR AVALIAÇÃO PRELIMINAR</button>
+      <p style="font-size:0.85rem; color:#666; margin-top:1rem; text-align: center;">
         Seus dados serão usados apenas para contato e não serão compartilhados com terceiros.
       </p>
-
     </form>
   </section>
 
   <footer>
     <p>© 2026 BATISTETI Projetos Metálicos | contato@seudominio.com | WhatsApp: (45) 99950-2835</p>
-    <p style="font-size:0.85rem; color:#ccc;"> Política de Privacidade: Seus dados serão utilizados exclusivamente para atendimento e não serão compartilhados com terceiros. </p>
+    <p style="font-size:0.8rem; color:#777; margin-top: 10px;">Política de Privacidade: Seus dados serão utilizados exclusivamente para atendimento técnico profissional.</p>
   </footer>
 
-  <!-- Envio do formulário por e-mail -->
-  <script>
-    document.getElementById("emailForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+<script>
+  const toggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".menu");
+  const overlay = document.querySelector(".menu-overlay");
 
-      const nome = document.getElementById("nome").value;
-      const telefone = document.getElementById("telefone").value;
-      const email = document.getElementById("email").value;
-      const descricao = document.getElementById("descricao").value;
+  const toggleMenu = () => {
+    toggle.classList.toggle("active");
+    menu.classList.toggle("active");
+    overlay.classList.toggle("active");
+  };
 
-      const assunto = "Novo Projeto Recebido para Avaliação Estrutural";
+  toggle.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", toggleMenu);
 
-      const mensagem =
-    `Nova solicitação enviada pelo site
-
-    Nome / Empresa:
-    ${nome}
-
-    Telefone (WhatsApp):
-    ${telefone}
-
-    E-mail:
-    ${email}
-
-    Descrição do Projeto:
-    ${descricao}
-
-    Solicitação enviada via site BATISTETI Projetos Metálicos
-    `;
-
-      emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
-        subject: assunto,
-        message: mensagem,
-        from_name: nome,
-        reply_to: email
-      })
-      .then(function() {
-        alert("Solicitação enviada com sucesso!");
-        document.getElementById("emailForm").reset();
-      }, function(error) {
-        alert("Erro ao enviar. Tente novamente.");
-      });
-
+  // ESTE É O AJUSTE DE SCRIPT:
+  // Faz com que o menu mobile feche sozinho ao clicar em qualquer link
+  document.querySelectorAll(".menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggle.classList.remove("active");
+      menu.classList.remove("active");
+      overlay.classList.remove("active");
     });
-    </script>
-
+  });
+</script>
 </body>
-</html>
